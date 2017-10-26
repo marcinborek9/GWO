@@ -6,7 +6,7 @@ function get_response(search_string){
 	let request = "https://gwo.pl/booksApi/v1/search?query=" + encodeURIComponent(search_string);
 	http.open("GET", request, false);
 	http.send();
-	
+
 	return JSON.parse(http.response);
 }
 
@@ -21,11 +21,11 @@ function clearTable() {
  * Buduje tabele z danymi, ktore użytkownik chce otrzymać z serwera
  */
 function buildTable() {
-	clearTable();
+clearTable();
 	let input = document.getElementById("search-input");
 	let obj = get_response(input.value);
 
-  for (let i in obj) {
+	for (let i in obj) {
 		document.getElementById('wrapper-body').innerHTML += "<tr " + "class='row-wrapper '" + ">" + 
 		"<td>" + "<img " + "class='table-image '" + "src=" + obj[i].cover + ">" + 
 		"<button " + "class='btn redirectBtn'" + ">" + "<a href='" + obj[i].url + "'" + ">" +  "Przejdź do księgarni" + "</a>"  + "</button>" + 
